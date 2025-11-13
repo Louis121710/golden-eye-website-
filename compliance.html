@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Golden Eye Security | Compliance & Quality Control</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Enhanced Hero Section */
+    .hero-content {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    .page-title {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+    
+    .page-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    /* Enhanced Content Blocks */
+    .content-block {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      margin: 3rem 0;
+      border: 1px solid rgba(76, 157, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(14, 34, 66, 0.08);
+    }
+    
+    .content-block h2 {
+      color: var(--blue-900);
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    
+    .content-block p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Enhanced Services Grid */
+    .services-grid {
+      display: grid;
+      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      margin: 3rem 0;
+    }
+    
+    .service-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(14, 34, 66, 0.1);
+      border: 1px solid rgba(76, 157, 255, 0.15);
+      border-left: 5px solid var(--yellow-400);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(14, 34, 66, 0.15);
+      border-left-color: var(--blue-600);
+    }
+    
+    .service-card:hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, var(--yellow-400), var(--blue-400));
+    }
+    
+    .service-card h3 {
+      color: var(--blue-900);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+    
+    /* Compliance Badges */
+    .compliance-badges {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .compliance-badge {
+      background: linear-gradient(135deg, var(--blue-400), var(--blue-600));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(31, 111, 230, 0.3);
+    }
+    
+    /* Enhanced Hero Meta */
+    .hero-meta {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-top: 3rem;
+    }
+    
+    .meta-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .meta-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .meta-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+    
+    .meta-text span {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.3rem;
+    }
+    
+    .meta-text strong {
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      display: block;
+      color: white;
+    }
+    
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .content-block {
+        padding: 2rem;
+      }
+      
+      .compliance-badges {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .compliance-badge {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="max-w nav">
+      <div class="brand">
+        <a href="/">
+          <img src="/assets/golden-eye-logo.png" alt="Golden Eye Security logo">
+          <span class="sr-only">Golden Eye Security</span>
+        </a>
+        <div class="brand-badges">
+          <img src="/assets/saidsa-logo.png" alt="SAIDSA Accredited">
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/compliance" class="active">Compliance &amp; QC</a>
+        <a href="/training">Training</a>
+        <a href="/equity">Equity</a>
+        <a href="/infrastructure">Infrastructure</a>
+        <a href="/products">Products &amp; Services</a>
+        <a href="/contact">Contact Us</a>
+      </nav>
+      <a class="nav-cta" href="tel:+27186326532">Emergency Hotline</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="max-w hero">
+      <article class="hero-card">
+        <div class="hero-content">
+          <h1 class="page-title">Compliance & Quality Control</h1>
+          <p class="page-subtitle">Maintaining the highest standards of regulatory compliance and quality assurance to ensure exceptional service delivery and client satisfaction.</p>
+
+          <div class="compliance-badges">
+            <div class="compliance-badge">PSiRA Registered</div>
+            <div class="compliance-badge">SAIDSA Member</div>
+            <div class="compliance-badge">Quality Assured</div>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <div class="meta-icon">📋</div>
+              <div class="meta-text">
+                <span>Registration</span>
+                <strong>PSiRA Compliant</strong>
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">⭐</div>
+              <div class="meta-text">
+                <span>Standards</span>
+                <strong>Quality Assured</strong>
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">🔄</div>
+              <div class="meta-text">
+                <span>Process</span>
+                <strong>Continuous Monitoring</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="max-w content-section">
+      <div class="content-block">
+        <h2>Quality Control & Compliance Standards</h2>
+        <p>Golden Eye Security maintains the highest standards of quality control and regulatory compliance to ensure exceptional service delivery and client satisfaction. Our comprehensive compliance framework ensures we meet and exceed all industry requirements.</p>
+        
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>PSiRA Registration</h3>
+            <p>Fully registered and compliant with the Private Security Industry Regulatory Authority (PSiRA) under registration number <strong>05 05 8 4 2228</strong>. All our security personnel are individually PSiRA registered and undergo regular compliance checks.</p>
+          </article>
+          
+          <article class="service-card">
+            <h3>SAIDSA Accreditation</h3>
+            <p>Proud member of the South African Intruder Detection Services Association, adhering to industry best practices and standards for alarm monitoring and armed response services. Our SAIDSA membership ensures we maintain the highest operational standards.</p>
+          </article>
+          
+          <article class="service-card">
+            <h3>Quality Management</h3>
+            <p>Comprehensive quality control systems with regular internal audits, performance monitoring, and continuous improvement processes to maintain service excellence. Our quality management framework ensures consistent service delivery across all operations.</p>
+          </article>
+          
+          <article class="service-card">
+            <h3>Legal Compliance</h3>
+            <p>Strict adherence to all relevant legislation including the Private Security Industry Regulation Act, Occupational Health and Safety Act, and Labour Relations Act. We maintain up-to-date knowledge of all regulatory changes and requirements.</p>
+          </article>
+        </div>
+
+        <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(246, 180, 0, 0.1), rgba(0, 102, 204, 0.1)); border-radius: var(--radius-md); border-left: 4px solid var(--yellow-400);">
+          <h3 style="color: var(--blue-900); margin-bottom: 1rem;">Our Compliance Commitment</h3>
+          <p style="color: var(--muted); margin: 0; line-height: 1.7;">At Golden Eye Security, compliance is not just a requirement – it's the foundation of our operational excellence. We are committed to maintaining the highest standards of regulatory compliance, quality control, and professional ethics in all our security services.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="max-w">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/golden-eye-logo.png" alt="Golden Eye Security logo">
+          <p>© Golden Eye Security 2013 | Professional Security Services</p>
+        </div>
+        <div>
+          <strong>Head Office</strong>
+          <p>Tel: (018) 632 6532 / (018) 632 4637</p>
+        </div>
+        <div>
+          <strong>Email</strong>
+          <p>technical@goldeneyesecurity.co.za</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        PSiRA Registered | SAIDSA Member | Nationwide Coverage
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

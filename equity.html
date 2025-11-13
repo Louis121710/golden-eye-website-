@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Golden Eye Security | Equity</title>
+  <link rel="stylesheet" href="./css/style.css">  <style>
+    /* Clean Hero Section */
+    .hero-content {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    .page-title {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    
+    .page-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    /* Clean Triangular Ownership Structure - Percentages Only */
+    .ownership-structure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+    }
+    
+    .triangle-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    
+    .top-owner {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .bottom-owners {
+      display: flex;
+      gap: 8rem;
+      position: relative;
+    }
+    
+    .owner-node {
+      text-align: center;
+      position: relative;
+    }
+    
+    .node-connector {
+      position: absolute;
+      background: linear-gradient(135deg, var(--yellow-400), var(--blue-400));
+      height: 3px;
+      width: 180px;
+      transform-origin: center;
+      z-index: 1;
+    }
+    
+    .connector-left {
+      transform: rotate(-30deg);
+      top: -60px;
+      left: -90px;
+    }
+    
+    .connector-right {
+      transform: rotate(30deg);
+      top: -60px;
+      right: -90px;
+    }
+    
+    .percentage-large {
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--yellow-400);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      line-height: 1;
+    }
+    
+    .percentage-medium {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      line-height: 1;
+    }
+    
+    /* Enhanced Leadership List */
+    .leadership-list {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .leader-item {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 40px rgba(14, 34, 66, 0.1);
+      border: 1px solid rgba(76, 157, 255, 0.15);
+      border-left: 5px solid var(--yellow-400);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .leader-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(14, 34, 66, 0.15);
+      border-left-color: var(--blue-600);
+    }
+    
+    .leader-item:hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, var(--yellow-400), var(--blue-400));
+    }
+    
+    .leader-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .leader-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .leader-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-400), var(--blue-600));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      flex-shrink: 0;
+      border: 4px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 32px rgba(31, 111, 230, 0.3);
+      transition: transform 0.3s ease;
+    }
+    
+    .leader-item:hover .leader-avatar {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(31, 111, 230, 0.4);
+    }
+    
+    .leader-info {
+      flex: 1;
+    }
+    
+    .leader-name {
+      color: var(--blue-900);
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    .leader-ownership {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .ownership-percentage {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--yellow-400), var(--yellow-300));
+      color: var(--text);
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 4px 16px rgba(247, 201, 72, 0.3);
+    }
+    
+    .ownership-role {
+      color: var(--blue-600);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .leader-bio {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    
+    .leader-bio p {
+      margin-bottom: 1.2rem;
+    }
+    
+    .leader-bio p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Content Sections */
+    .intro-section {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      margin: 3rem 0;
+      border: 1px solid rgba(76, 157, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(14, 34, 66, 0.08);
+    }
+    
+    .intro-section p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .intro-section p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      color: var(--blue-900);
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .bottom-owners {
+        gap: 4rem;
+        flex-direction: column;
+      }
+      
+      .node-connector {
+        display: none;
+      }
+      
+      .percentage-large {
+        font-size: 4rem;
+      }
+      
+      .percentage-medium {
+        font-size: 2.5rem;
+      }
+      
+      .leader-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+      }
+      
+      .leader-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+      
+      .leader-name {
+        font-size: 1.5rem;
+      }
+      
+      .intro-section {
+        padding: 2rem;
+      }
+      
+      .leader-ownership {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="max-w nav">
+      <div class="brand">
+        <a href="/">
+          <img src="/assets/golden-eye-logo.png" alt="Golden Eye Security logo">
+          <span class="sr-only">Golden Eye Security</span>
+        </a>
+        <div class="brand-badges">
+          <img src="/assets/saidsa-logo.png" alt="SAIDSA Accredited">
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/compliance">Compliance &amp; QC</a>
+        <a href="/training">Training</a>
+        <a href="/equity" class="active">Equity</a>
+        <a href="/infrastructure">Infrastructure</a>
+        <a href="/products">Products &amp; Services</a>
+        <a href="/contact">Contact Us</a>
+      </nav>
+      <a class="nav-cta" href="tel:+27186326532">Emergency Hotline</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="max-w hero">
+      <article class="hero-card">
+        <div class="hero-content">
+          <h1 class="page-title">EQUITY</h1>
+          <p class="page-subtitle">Golden Eye is a black owned business entity with a proactive black economic empowerment strategy aligned with the BEE scorecard.</p>
+          
+          <!-- Clean Triangular Ownership Structure - Percentages Only -->
+          <div class="ownership-structure">
+            <div class="triangle-container">
+              <!-- Top Owner - 51% -->
+              <div class="top-owner owner-node">
+                <div class="percentage-large">51%</div>
+              </div>
+
+              <!-- Bottom Owners - 25% & 24% -->
+              <div class="bottom-owners">
+                <!-- Left Owner - 25% -->
+                <div class="owner-node">
+                  <div class="node-connector connector-left"></div>
+                  <div class="percentage-medium">25%</div>
+                </div>
+
+                <!-- Right Owner - 24% -->
+                <div class="owner-node">
+                  <div class="node-connector connector-right"></div>
+                  <div class="percentage-medium">24%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="max-w content-section">
+      <div class="intro-section">
+        <p>Golden Eye is a black owned business entity and has a pro-active black economic empowerment strategy with objectives set, in line with the BEE scorecard as published in the Government Gazette. CK2 Certificate available on request, as issued.</p>
+        
+        <p>Golden Eye is an equal opportunity employer with a very active equity policy. We aim to be representative of our clients regarding race, language and sex. Recruitment is professionally conducted and also complies with the Labour Relations Act 66 of 1995 and the Employment Equity Act. Our company's remuneration policy complies with the Basic Conditions Employment Act, as enshrined in the Government Gazette.</p>
+      </div>
+
+      <h2 class="section-title">Group Members</h2>
+      <p class="section-subtitle">Meet the dedicated leadership team driving Golden Eye Security's success and transformation</p>
+
+      <!-- Enhanced Leadership List -->
+      <div class="leadership-list">
+        <!-- Michael Tibakanye -->
+        <article class="leader-item">
+          <div class="leader-header">
+            <div class="leader-avatar">MT</div>
+            <div class="leader-info">
+              <h3 class="leader-name">Michael Tibakanye</h3>
+              <div class="leader-ownership">
+                <div class="ownership-percentage">51% Ownership</div>
+                <div class="ownership-role">Majority Owner</div>
+              </div>
+            </div>
+          </div>
+          <div class="leader-bio">
+            <p>Michael was born on 15 October 1955 in Carletonville. Attended and completed his High School education at Batshold High School at Itseoeng, Lichtenburg in 1975.</p>
+            <p>He obtained his National Diploma in Personnel Management, National Diploma in Training Management and Professional Certificate in Human Resources at the Institute of Personnel Management. He also completed his Bachelor of Technology in Human Resources Management at the Technikon South Africa in 1999.</p>
+            <p>After 17 years at Lafarge Cement in the Personnel and Training department, Michael decided to join the private sector. During November 2003 he purchased the shares.</p>
+          </div>
+        </article>
+
+        <!-- Folkers Hammann -->
+        <article class="leader-item">
+          <div class="leader-header">
+            <div class="leader-avatar">FH</div>
+            <div class="leader-info">
+              <h3 class="leader-name">Folkers Hammann</h3>
+              <div class="leader-ownership">
+                <div class="ownership-percentage">25% Ownership</div>
+                <div class="ownership-role">Co-Owner</div>
+              </div>
+            </div>
+          </div>
+          <div class="leader-bio">
+            <p>Folkers completed his teaching studies December 1987 at POK/PU. He joined the SANDF from 1988 – 1998, where he achieved the rank of LT. In 1989 he received the award for being the Best Company Commander for the year 1989 (far North Command).</p>
+            <p>Folkers served in the teaching profession from 1990 – 1992, after which he joined then the called Blue Circle Cement in Lichtenburg as Personnel/Security Officer until December 1998. During this period he was responsible for managing the total security function, which included complying with the ISO SYSTEM for listing purpose.</p>
+            <p>Folkers is a professionally qualified and registered Security advisor and achieved his National Diploma in Security Management from UNISA.</p>
+          </div>
+        </article>
+
+        <!-- Eileen Hammann -->
+        <article class="leader-item">
+          <div class="leader-header">
+            <div class="leader-avatar">EH</div>
+            <div class="leader-info">
+              <h3 class="leader-name">Eileen Hammann</h3>
+              <div class="leader-ownership">
+                <div class="ownership-percentage">24% Ownership</div>
+                <div class="ownership-role">Co-Owner</div>
+              </div>
+            </div>
+          </div>
+          <div class="leader-bio">
+            <p>Matriculated at Potchefstroom Gimnasium 1988. During the period 1989 – 1991 Eileen studied and attained her BSC degree at PU for CHE. At the end of 1992 she obtained her post degree diploma at the University of Pretoria.</p>
+            <p>For the period 1993 – 1998 Eileen was self-employed in the Medical field, after which she joined Golden Eye, managing the finance department.</p>
+            <p>Eileen also received the Grade B certificate for security officers. She has fifteen years experience in daily security operational matters as well as the financial aspects of a security company.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="max-w">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/golden-eye-logo.png" alt="Golden Eye Security logo">
+          <p>© Golden Eye Security 2013 | Professional Security Services</p>
+        </div>
+        <div>
+          <strong>Head Office</strong>
+          <p>Tel: (018) 632 6532 / (018) 632 4637</p>
+        </div>
+        <div>
+          <strong>Email</strong>
+          <p>technical@goldeneyesecurity.co.za</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        PSiRA Registered | SAIDSA Member | Nationwide Coverage
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
