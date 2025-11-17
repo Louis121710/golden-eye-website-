@@ -21,65 +21,81 @@ class GoldenEyeApp {
         const navLinks = document.querySelector('.nav-links');
         const body = document.body;
         
-        if (menuToggle && navLinks) {
-            const toggleMenu = () => {
-                const isActive = menuToggle.classList.contains('active');
-                
-                if (isActive) {
-                    // Close menu
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    body.style.overflow = '';
-                } else {
-                    // Open menu
-                    menuToggle.classList.add('active');
-                    navLinks.classList.add('active');
-                    body.style.overflow = 'hidden';
-                }
-            };
-
-            menuToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleMenu();
-            });
-
-            // Close menu when clicking on a link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    body.style.overflow = '';
-                });
-            });
-
-            // Close menu when clicking on backdrop or outside
-            document.addEventListener('click', (e) => {
-                if (navLinks.classList.contains('active')) {
-                    // Check if clicking on backdrop (the ::before pseudo-element area)
-                    const navLinksRect = navLinks.getBoundingClientRect();
-                    const clickedX = e.clientX;
-                    const clickedY = e.clientY;
-                    
-                    // If click is outside the menu panel, close it
-                    if (!menuToggle.contains(e.target) && 
-                        !navLinks.contains(e.target) &&
-                        (clickedX < navLinksRect.left || clickedX > navLinksRect.right)) {
-                        menuToggle.classList.remove('active');
-                        navLinks.classList.remove('active');
-                        body.style.overflow = '';
-                    }
-                }
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    body.style.overflow = '';
-                }
-            });
+        if (!menuToggle || !navLinks) {
+            console.warn('Mobile menu elements not found');
+            return;
         }
+        
+        const toggleMenu = () => {
+            const isActive = navLinks.classList.contains('active');
+            
+            if (isActive) {
+                // Close menu
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.style.overflow = '';
+            } else {
+                // Open menu
+                menuToggle.classList.add('active');
+                navLinks.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+        };
+
+        // Toggle menu on button click
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setTimeout(() => {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    body.style.overflow = '';
+                }, 100);
+            });
+        });
+
+        // Close menu when clicking on backdrop
+        const backdrop = document.createElement('div');
+        backdrop.className = 'mobile-menu-backdrop';
+        backdrop.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;';
+        document.body.appendChild(backdrop);
+
+        backdrop.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.style.overflow = '';
+            backdrop.style.opacity = '0';
+            backdrop.style.visibility = 'hidden';
+        });
+
+        // Update backdrop visibility when menu toggles
+        const updateBackdrop = () => {
+            if (navLinks.classList.contains('active')) {
+                backdrop.style.opacity = '1';
+                backdrop.style.visibility = 'visible';
+            } else {
+                backdrop.style.opacity = '0';
+                backdrop.style.visibility = 'hidden';
+            }
+        };
+
+        // Watch for menu state changes
+        const observer = new MutationObserver(updateBackdrop);
+        observer.observe(navLinks, { attributes: true, attributeFilter: ['class'] });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
     }
 
     handleScroll() {
