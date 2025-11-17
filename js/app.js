@@ -17,109 +17,30 @@ class GoldenEyeApp {
     }
 
     setupMobileMenu() {
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const body = document.body;
-        
-        if (!menuToggle || !navLinks) {
-            console.warn('Mobile menu elements not found');
-            return;
+        // Remove any existing backdrop
+        const existingBackdrop = document.querySelector('.mobile-menu-backdrop');
+        if (existingBackdrop) {
+            existingBackdrop.remove();
         }
         
-        const toggleMenu = () => {
-            const isActive = navLinks.classList.contains('active');
-            console.log('Toggle menu - current state:', isActive);
+        // On mobile, navigation is always visible - no menu toggle needed
+        // Just ensure links are clickable
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks) {
+            // Remove any active classes that might interfere
+            navLinks.classList.remove('active');
             
-            if (isActive) {
-                // Close menu
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.style.overflow = '';
-                if (backdrop) {
-                    backdrop.style.opacity = '0';
-                    backdrop.style.visibility = 'hidden';
-                }
-                console.log('Menu closed');
-            } else {
-                // Open menu
-                menuToggle.classList.add('active');
-                navLinks.classList.add('active');
-                body.style.overflow = 'hidden';
-                if (backdrop) {
-                    backdrop.style.opacity = '1';
-                    backdrop.style.visibility = 'visible';
-                }
-                console.log('Menu opened');
-            }
-        };
-        
-        // Create backdrop first
-        const backdrop = document.createElement('div');
-        backdrop.className = 'mobile-menu-backdrop';
-        backdrop.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 48, 96, 0.6); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; pointer-events: none;';
-        document.body.appendChild(backdrop);
-        
-        // Enable pointer events when visible
-        const updateBackdrop = () => {
-            if (navLinks.classList.contains('active')) {
-                backdrop.style.opacity = '1';
-                backdrop.style.visibility = 'visible';
-                backdrop.style.pointerEvents = 'auto';
-            } else {
-                backdrop.style.opacity = '0';
-                backdrop.style.visibility = 'hidden';
-                backdrop.style.pointerEvents = 'none';
-            }
-        };
-
-        // Toggle menu on button click - use multiple event types
-        const handleToggle = (e) => {
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            console.log('Menu toggle triggered');
-            toggleMenu();
-        };
-
-        menuToggle.addEventListener('click', handleToggle);
-        menuToggle.addEventListener('touchend', handleToggle);
-        
-        // Also try mousedown for better mobile support
-        menuToggle.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-        });
-
-        // Close menu when clicking on a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.stopPropagation();
-                setTimeout(() => {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    body.style.overflow = '';
-                }, 100);
+            // Ensure all links are clickable
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.style.pointerEvents = 'auto';
+                link.style.cursor = 'pointer';
+                link.style.userSelect = 'none';
+                link.style.webkitUserSelect = 'none';
+                
+                // Remove any event listeners that might block
+                link.onclick = null;
             });
-        });
-
-        backdrop.addEventListener('click', () => {
-            console.log('Backdrop clicked - closing menu');
-            toggleMenu();
-        });
-
-        // Watch for menu state changes
-        const observer = new MutationObserver(updateBackdrop);
-        observer.observe(navLinks, { attributes: true, attributeFilter: ['class'] });
-        
-        // Initial backdrop state
-        updateBackdrop();
-
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
+        }
     }
 
     handleScroll() {
