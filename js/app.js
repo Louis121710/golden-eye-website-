@@ -52,10 +52,18 @@ class GoldenEyeApp {
                 });
             });
 
-            // Close menu when clicking outside
+            // Close menu when clicking on backdrop or outside
             document.addEventListener('click', (e) => {
                 if (navLinks.classList.contains('active')) {
-                    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    // Check if clicking on backdrop (the ::before pseudo-element area)
+                    const navLinksRect = navLinks.getBoundingClientRect();
+                    const clickedX = e.clientX;
+                    const clickedY = e.clientY;
+                    
+                    // If click is outside the menu panel, close it
+                    if (!menuToggle.contains(e.target) && 
+                        !navLinks.contains(e.target) &&
+                        (clickedX < navLinksRect.left || clickedX > navLinksRect.right)) {
                         menuToggle.classList.remove('active');
                         navLinks.classList.remove('active');
                         body.style.overflow = '';
