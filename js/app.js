@@ -17,39 +17,77 @@ class GoldenEyeApp {
     }
 
     setupMobileMenu() {
-        // Remove any existing backdrop elements
-        const existingBackdrop = document.querySelector('.mobile-menu-backdrop');
-        if (existingBackdrop) {
-            existingBackdrop.remove();
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (!menuToggle || !navLinks) {
+            console.warn('Mobile menu elements not found');
+            return;
         }
         
-        // Remove all backdrop elements (in case there are multiple)
+        // Remove any existing backdrop elements
         document.querySelectorAll('.mobile-menu-backdrop').forEach(el => el.remove());
         
-        // On mobile, navigation is always visible - no menu toggle needed
-        // Just ensure links are clickable
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks) {
-            // Remove any active classes that might interfere
-            navLinks.classList.remove('active');
+        // Toggle menu function
+        const toggleMenu = () => {
+            const isActive = navLinks.classList.contains('active');
             
-            // Ensure all links are clickable and remove tap highlights
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.style.pointerEvents = 'auto';
-                link.style.cursor = 'pointer';
-                link.style.userSelect = 'none';
-                link.style.webkitUserSelect = 'none';
-                link.style.webkitTapHighlightColor = 'transparent';
-                link.style.tapHighlightColor = 'transparent';
-                
-                // Remove any event listeners that might block
-                link.onclick = null;
-            });
-        }
+            if (isActive) {
+                // Close menu
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            } else {
+                // Open menu
+                menuToggle.classList.add('active');
+                navLinks.classList.add('active');
+            }
+        };
+
+        // Button click handler
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
         
-        // Remove tap highlight from body
-        document.body.style.webkitTapHighlightColor = 'transparent';
-        document.body.style.tapHighlightColor = 'transparent';
+        // Touch event for mobile
+        menuToggle.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active')) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+        
+        // Ensure all links are clickable
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.style.pointerEvents = 'auto';
+            link.style.cursor = 'pointer';
+            link.style.webkitTapHighlightColor = 'transparent';
+        });
     }
 
     handleScroll() {
