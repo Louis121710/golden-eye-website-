@@ -19,11 +19,28 @@ class GoldenEyeApp {
     setupMobileMenu() {
         const menuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
         
         if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
+            const toggleMenu = () => {
+                const isActive = menuToggle.classList.contains('active');
+                
+                if (isActive) {
+                    // Close menu
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    body.style.overflow = '';
+                } else {
+                    // Open menu
+                    menuToggle.classList.add('active');
+                    navLinks.classList.add('active');
+                    body.style.overflow = 'hidden';
+                }
+            };
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
             });
 
             // Close menu when clicking on a link
@@ -31,14 +48,27 @@ class GoldenEyeApp {
                 link.addEventListener('click', () => {
                     menuToggle.classList.remove('active');
                     navLinks.classList.remove('active');
+                    body.style.overflow = '';
                 });
             });
 
             // Close menu when clicking outside
             document.addEventListener('click', (e) => {
-                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                if (navLinks.classList.contains('active')) {
+                    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        body.style.overflow = '';
+                    }
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
                     menuToggle.classList.remove('active');
                     navLinks.classList.remove('active');
+                    body.style.overflow = '';
                 }
             });
         }
