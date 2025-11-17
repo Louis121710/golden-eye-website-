@@ -19,14 +19,12 @@ class GoldenEyeApp {
     setupMobileMenu() {
         const menuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
         
         if (!menuToggle || !navLinks) {
             console.warn('Mobile menu elements not found');
             return;
         }
-        
-        // Remove any existing backdrop elements
-        document.querySelectorAll('.mobile-menu-backdrop').forEach(el => el.remove());
         
         // Toggle menu function
         const toggleMenu = () => {
@@ -36,10 +34,12 @@ class GoldenEyeApp {
                 // Close menu
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
             } else {
                 // Open menu
                 menuToggle.classList.add('active');
                 navLinks.classList.add('active');
+                body.classList.add('menu-open');
             }
         };
 
@@ -62,15 +62,26 @@ class GoldenEyeApp {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
             });
         });
 
-        // Close menu when clicking outside
+        // Close menu when clicking outside (on backdrop or anywhere outside menu)
         document.addEventListener('click', (e) => {
             if (navLinks.classList.contains('active')) {
-                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
+                // Check if click is outside the menu panel and not on the toggle button
+                const isClickOnMenu = navLinks.contains(e.target);
+                const isClickOnToggle = menuToggle.contains(e.target);
+                
+                // If click is on a link, let it handle navigation (menu will close via link handler)
+                const isClickOnLink = e.target.closest('a') !== null && navLinks.contains(e.target.closest('a'));
+                
+                if (!isClickOnMenu && !isClickOnToggle) {
+                    // Click is outside menu - close it
+                    toggleMenu();
+                } else if (isClickOnMenu && !isClickOnLink && e.target === navLinks) {
+                    // Click is directly on nav-links container (backdrop area) - close menu
+                    toggleMenu();
                 }
             }
         });

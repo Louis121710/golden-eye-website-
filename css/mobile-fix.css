@@ -1,0 +1,197 @@
+/* AGGRESSIVE MOBILE FIXES - This file ensures mobile functionality works */
+
+/* Force mobile menu button to show on all mobile devices */
+@media screen and (max-width: 968px) {
+  /* CRITICAL: Force button visibility */
+  button.mobile-menu-toggle,
+  .mobile-menu-toggle {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    background: linear-gradient(135deg, #003060, #004499) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+    order: 999 !important;
+    cursor: pointer !important;
+  }
+  
+  .mobile-menu-toggle span {
+    display: block !important;
+    background: white !important;
+    width: 24px !important;
+    height: 3px !important;
+    margin: 3px 0 !important;
+  }
+  
+  /* Hide desktop navigation */
+  .nav-links:not(.active) {
+    display: none !important;
+  }
+  
+  /* Hide emergency button on mobile */
+  .nav-cta {
+    display: none !important;
+  }
+  
+  /* Ensure nav container doesn't wrap */
+  .nav {
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+  }
+  
+  /* Brand logo constraints */
+  .brand {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 60px) !important;
+    overflow: hidden !important;
+  }
+  
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  
+  /* All containers should respect viewport */
+  .max-w {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Hero cards mobile */
+  .hero-card {
+    width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin: 0 1rem !important;
+    padding: 2rem 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Content blocks mobile */
+  .content-block {
+    width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin: 1.5rem 1rem !important;
+    padding: 2rem 1.5rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* All grids to single column */
+  .services-grid,
+  .hero-meta,
+  .contact-wrapper,
+  .quick-actions {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Service cards */
+  .service-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Infrastructure badges */
+  .infrastructure-badges {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+  }
+  
+  .infrastructure-badge {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Text sizing */
+  .page-title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+  }
+  
+  .page-subtitle {
+    font-size: clamp(1rem, 3vw, 1.2rem) !important;
+  }
+  
+  .section-title {
+    font-size: clamp(1.5rem, 4vw, 2rem) !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Forms */
+  form {
+    width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin: 0 1rem !important;
+    padding: 2rem 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 2rem 1rem !important;
+  }
+  
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+  .max-w {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .hero-card,
+  .content-block,
+  form {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    width: calc(100% - 1rem) !important;
+    padding: 1.5rem 1rem !important;
+  }
+  
+  .nav {
+    padding: 0.75rem 0 !important;
+    min-height: 60px !important;
+  }
+  
+  .brand img {
+    height: 35px !important;
+  }
+  
+  .mobile-menu-toggle {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 8px !important;
+  }
+}
+
