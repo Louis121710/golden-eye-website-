@@ -7,6 +7,7 @@ class GoldenEyeApp {
         this.setupEventListeners();
         this.setupContactForms();
         this.setupServiceOptions();
+        this.setupMobileMenu();
         console.log('GoldenEye Website initialized');
     }
 
@@ -15,15 +16,41 @@ class GoldenEyeApp {
         window.addEventListener('scroll', this.handleScroll.bind(this));
     }
 
+    setupMobileMenu() {
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+    }
+
     handleScroll() {
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(44, 62, 80, 0.95)';
-                navbar.style.backdropFilter = 'blur(10px)';
+        const header = document.querySelector('header');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                navbar.style.background = '#2c3e50';
-                navbar.style.backdropFilter = 'none';
+                header.classList.remove('scrolled');
             }
         }
     }

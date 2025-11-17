@@ -1,0 +1,13 @@
+{
+  "name": "golden-eye-website",
+  "version": "1.0.0",
+  "description": "Golden Eye Security Website",
+  "scripts": {
+    "dev": "http-server . -p 8080 -o",
+    "start": "http-server . -p 8080 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+
