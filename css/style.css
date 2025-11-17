@@ -44,6 +44,22 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+}
+
+/* Remove text selection highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+}
+
+*::selection {
+  background: rgba(0, 102, 204, 0.2);
+}
+
+*::-moz-selection {
+  background: rgba(0, 102, 204, 0.2);
 }
 
 a { 
@@ -766,9 +782,15 @@ footer {
     gap: 0;
   }
   
-  /* Remove header pseudo-element */
+  /* Remove all pseudo-elements that might show buttons */
   .nav-links::after {
-    display: none;
+    display: none !important;
+    content: none !important;
+  }
+  
+  .nav-links::before {
+    display: none !important;
+    content: none !important;
   }
   
   /* Navigation Links - Always Visible */
@@ -789,9 +811,12 @@ footer {
     box-sizing: border-box;
     margin: 0;
     cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0, 102, 204, 0.1);
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
     pointer-events: auto;
     z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
   }
   
   .nav-links a:first-of-type {
@@ -817,12 +842,14 @@ footer {
   }
   
   /* Hover State - Blue */
-  .nav-links a:hover {
+  .nav-links a:hover,
+  .nav-links a:active {
     background: linear-gradient(90deg, var(--blue-100) 0%, rgba(0, 102, 204, 0.12) 100%);
     color: var(--blue-700);
     padding-left: 2rem;
     border-left: 4px solid var(--blue-400);
     padding-left: calc(2rem - 4px);
+    -webkit-tap-highlight-color: transparent;
   }
   
   .nav-links a:hover::after {

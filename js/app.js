@@ -17,11 +17,14 @@ class GoldenEyeApp {
     }
 
     setupMobileMenu() {
-        // Remove any existing backdrop
+        // Remove any existing backdrop elements
         const existingBackdrop = document.querySelector('.mobile-menu-backdrop');
         if (existingBackdrop) {
             existingBackdrop.remove();
         }
+        
+        // Remove all backdrop elements (in case there are multiple)
+        document.querySelectorAll('.mobile-menu-backdrop').forEach(el => el.remove());
         
         // On mobile, navigation is always visible - no menu toggle needed
         // Just ensure links are clickable
@@ -30,17 +33,23 @@ class GoldenEyeApp {
             // Remove any active classes that might interfere
             navLinks.classList.remove('active');
             
-            // Ensure all links are clickable
+            // Ensure all links are clickable and remove tap highlights
             navLinks.querySelectorAll('a').forEach(link => {
                 link.style.pointerEvents = 'auto';
                 link.style.cursor = 'pointer';
                 link.style.userSelect = 'none';
                 link.style.webkitUserSelect = 'none';
+                link.style.webkitTapHighlightColor = 'transparent';
+                link.style.tapHighlightColor = 'transparent';
                 
                 // Remove any event listeners that might block
                 link.onclick = null;
             });
         }
+        
+        // Remove tap highlight from body
+        document.body.style.webkitTapHighlightColor = 'transparent';
+        document.body.style.tapHighlightColor = 'transparent';
     }
 
     handleScroll() {
