@@ -741,7 +741,7 @@ footer {
   
   /* Mobile Menu Panel - Modern Design */
   .nav-links {
-    display: flex;
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -763,6 +763,7 @@ footer {
   }
   
   .nav-links.active {
+    display: flex !important;
     transform: translateX(0);
   }
   
@@ -862,7 +863,7 @@ footer {
   
   
   .mobile-menu-toggle {
-    display: flex;
+    display: flex !important;
     order: 3;
     margin-left: auto;
     background: linear-gradient(135deg, var(--blue-900), var(--blue-800));
@@ -872,6 +873,8 @@ footer {
     position: relative;
     border: 2px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .mobile-menu-toggle span {

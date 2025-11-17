@@ -28,17 +28,20 @@ class GoldenEyeApp {
         
         const toggleMenu = () => {
             const isActive = navLinks.classList.contains('active');
+            console.log('Toggle menu - current state:', isActive);
             
             if (isActive) {
                 // Close menu
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
                 body.style.overflow = '';
+                console.log('Menu closed');
             } else {
                 // Open menu
                 menuToggle.classList.add('active');
                 navLinks.classList.add('active');
                 body.style.overflow = 'hidden';
+                console.log('Menu opened');
             }
         };
 
@@ -46,6 +49,15 @@ class GoldenEyeApp {
         menuToggle.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
+            console.log('Menu button clicked');
+            toggleMenu();
+        });
+        
+        // Also add touch event for mobile
+        menuToggle.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Menu button touched');
             toggleMenu();
         });
 
