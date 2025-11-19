@@ -33,7 +33,7 @@
       line-height: 1.6;
     }
     
-    /* Emergency CTA - FIXED: Single line */
+    /* Emergency CTA - Mobile-friendly with text wrapping */
     .emergency-cta {
       background: linear-gradient(135deg, #e74c3c, #c0392b);
       color: white;
@@ -47,8 +47,8 @@
       box-shadow: 0 12px 40px rgba(231, 76, 60, 0.4);
       border: 2px solid rgba(255, 255, 255, 0.3);
       transition: all 0.3s ease;
-      white-space: nowrap;
-      overflow: hidden;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
     
     .emergency-cta:hover {
@@ -60,7 +60,8 @@
       color: white;
       text-decoration: none;
       display: block;
-      white-space: nowrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
     
     /* Enhanced Contact Wrapper */
@@ -403,6 +404,9 @@
       font-size: 1.1rem;
       color: white;
       font-weight: 600;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
     }
     
     /* FIX: Split Lichtenburg Head Office into two lines */
@@ -484,6 +488,24 @@
         white-space: normal;
         padding: 1.2rem 1.5rem;
         font-size: 1.1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: calc(100% - 2rem);
+      }
+      
+      .contact-method {
+        flex-wrap: wrap;
+      }
+      
+      .contact-method .info {
+        min-width: 0;
+        flex: 1;
+      }
+      
+      .contact-method .value {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
       }
     }
   </style>

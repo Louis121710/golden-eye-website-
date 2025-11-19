@@ -542,6 +542,64 @@
     padding: 2rem 1.5rem !important;
   }
   
+  /* Contact methods - FIX TEXT OVERFLOW */
+  .contact-methods {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    gap: 1.25rem !important;
+    margin-top: 2rem !important;
+    padding: 0 !important;
+  }
+  
+  .contact-method {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    padding: 1.25rem 1rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+  }
+  
+  .contact-method .icon {
+    flex-shrink: 0 !important;
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+  }
+  
+  .contact-method .info {
+    flex: 1 !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 60px) !important;
+    overflow-x: hidden !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  .contact-method .label {
+    display: block !important;
+    width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .contact-method .value {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem) !important;
+    line-height: 1.5 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
   /* Footer with natural spacing */
   footer {
     padding: 3rem 1.25rem 2rem !important;
@@ -570,15 +628,47 @@
     text-align: center !important;
   }
   
-  /* Emergency CTA with better spacing */
+  /* Emergency CTA with better spacing - FIX TEXT OVERFLOW */
   .emergency-cta {
     width: calc(100% - 2.5rem) !important;
-    max-width: 100% !important;
+    max-width: calc(100% - 2.5rem) !important;
     margin: 2rem auto !important;
-    padding: 2rem 1.75rem !important;
+    padding: 1.5rem 1.25rem !important;
     box-sizing: border-box !important;
-    font-size: 1.05rem !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
     border-radius: var(--radius-md) !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    overflow-x: hidden !important;
+    text-align: center !important;
+  }
+  
+  .emergency-cta a {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+  .emergency-label,
+  .emergency-number {
+    display: block !important;
+    width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  .emergency-label {
+    margin-bottom: 0.5rem !important;
+    font-size: clamp(0.85rem, 3vw, 1rem) !important;
+  }
+  
+  .emergency-number {
+    font-size: clamp(1rem, 4vw, 1.2rem) !important;
+    font-weight: 700 !important;
   }
   
   /* Badges - compliance, products, etc. */
@@ -689,6 +779,43 @@
   
   .contact-wrapper {
     gap: 2rem !important;
+  }
+  
+  /* Extra small - Emergency CTA and Contact Methods */
+  .emergency-cta {
+    padding: 1.25rem 1rem !important;
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
+  }
+  
+  .emergency-label {
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem) !important;
+  }
+  
+  .emergency-number {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+  }
+  
+  .contact-method {
+    padding: 1rem 0.75rem !important;
+  }
+  
+  .contact-method .icon {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    font-size: 1.25rem !important;
+  }
+  
+  .contact-method .info {
+    max-width: calc(100% - 55px) !important;
+  }
+  
+  .contact-method .label {
+    font-size: 0.7rem !important;
+  }
+  
+  .contact-method .value {
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
   }
   
   .nav {
