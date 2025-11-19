@@ -129,49 +129,52 @@
     display: block !important;
   }
   
-  /* All containers should respect viewport */
+  /* All containers should respect viewport with natural spacing */
   .max-w {
     width: 100% !important;
     max-width: 100% !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
     box-sizing: border-box !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
   
-  /* Hero sections - mobile friendly */
+  /* Hero sections - mobile friendly with natural spacing */
   .hero {
-    padding: 1.5rem 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  
-  .hero-card {
-    width: calc(100% - 2rem) !important;
-    max-width: 100% !important;
-    margin: 0 1rem !important;
-    padding: 2rem 1.5rem !important;
-    box-sizing: border-box !important;
-  }
-  
-  /* Content blocks - proper mobile sizing */
-  .content-block {
-    width: calc(100% - 2rem) !important;
-    max-width: 100% !important;
-    margin: 1.5rem 1rem !important;
-    padding: 2rem 1.5rem !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-  }
-  
-  .content-section {
     padding: 2rem 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    margin-bottom: 1rem !important;
   }
   
-  /* All grids to single column */
+  .hero-card {
+    width: calc(100% - 2.5rem) !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 2.5rem 2rem !important;
+    box-sizing: border-box !important;
+    border-radius: var(--radius-md) !important;
+  }
+  
+  /* Content blocks - proper mobile sizing with breathing room */
+  .content-block {
+    width: calc(100% - 2.5rem) !important;
+    max-width: 100% !important;
+    margin: 2rem auto !important;
+    padding: 2.5rem 2rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    border-radius: var(--radius-md) !important;
+  }
+  
+  .content-section {
+    padding: 2.5rem 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* All grids to single column with natural spacing */
   .services-grid,
   .hero-meta,
   .contact-wrapper,
@@ -180,126 +183,156 @@
   .form-grid,
   .footer-top {
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
-    padding: 0 1rem !important;
+    gap: 2rem !important;
+    padding: 0 1.25rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    margin-top: 2rem !important;
   }
   
-  /* Service cards */
+  /* Service cards with better spacing */
   .service-card {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
-    padding: 2rem 1.5rem !important;
+    padding: 2.5rem 2rem !important;
     box-sizing: border-box !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 0 !important;
   }
   
-  /* Infrastructure badges */
+  /* Infrastructure badges with better spacing */
   .infrastructure-badges {
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 1rem !important;
+    gap: 1.25rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    margin: 2rem 0 !important;
   }
   
   .infrastructure-badge {
     width: 100% !important;
     box-sizing: border-box !important;
+    padding: 1.5rem !important;
+    border-radius: var(--radius-md) !important;
   }
   
-  /* Hero meta items */
+  /* Hero meta items with natural spacing */
   .hero-meta {
     width: 100% !important;
     box-sizing: border-box !important;
+    margin-top: 2rem !important;
+    gap: 1.5rem !important;
   }
   
   .meta-item {
     width: 100% !important;
     box-sizing: border-box !important;
+    padding: 1.5rem !important;
+    border-radius: var(--radius-md) !important;
   }
   
-  /* Stats grid */
+  /* Stats grid with natural spacing */
   .stats-grid {
     width: 100% !important;
     box-sizing: border-box !important;
+    gap: 2rem !important;
+    margin: 2rem 0 !important;
   }
   
-  /* Quick actions */
+  .stat-item {
+    padding: 2rem 1.5rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+  
+  /* Quick actions with better spacing */
   .quick-actions {
     width: 100% !important;
     box-sizing: border-box !important;
+    gap: 1.75rem !important;
+    margin: 2rem 0 !important;
   }
   
   .action-card {
     width: 100% !important;
     box-sizing: border-box !important;
+    padding: 2rem 1.75rem !important;
+    border-radius: var(--radius-md) !important;
   }
   
-  /* Text sizing - responsive and readable */
+  /* Text sizing - responsive and readable with natural spacing */
   .page-title {
-    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+    font-size: clamp(1.875rem, 6vw, 2.5rem) !important;
     line-height: 1.3 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-    padding: 0 1rem !important;
+    padding: 0 !important;
+    margin-bottom: 1.25rem !important;
   }
   
   .page-subtitle {
-    font-size: clamp(1rem, 4vw, 1.2rem) !important;
-    line-height: 1.6 !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    padding: 0 1rem !important;
-  }
-  
-  .section-title {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
-    line-height: 1.3 !important;
-    padding: 0 1rem !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-  
-  .section-subtitle {
-    font-size: clamp(1rem, 3.5vw, 1.1rem) !important;
-    line-height: 1.6 !important;
-    padding: 0 1rem !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-  
-  .content-block h2 {
-    font-size: clamp(1.5rem, 5vw, 1.75rem) !important;
-    line-height: 1.3 !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-  
-  .content-block h3 {
-    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
-    line-height: 1.4 !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-  
-  .content-block p {
-    font-size: 1rem !important;
+    font-size: clamp(1.1rem, 4vw, 1.3rem) !important;
     line-height: 1.7 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
+    padding: 0 !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .section-title {
+    font-size: clamp(1.75rem, 5vw, 2.25rem) !important;
+    line-height: 1.3 !important;
+    padding: 0 1.25rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.5rem !important;
+    margin-top: 2rem !important;
+  }
+  
+  .section-subtitle {
+    font-size: clamp(1.05rem, 3.5vw, 1.2rem) !important;
+    line-height: 1.7 !important;
+    padding: 0 1.25rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .content-block h2 {
+    font-size: clamp(1.625rem, 5vw, 2rem) !important;
+    line-height: 1.3 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .content-block h3 {
+    font-size: clamp(1.375rem, 4vw, 1.625rem) !important;
+    line-height: 1.4 !important;
+    word-wrap: break-word !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .content-block p {
+    font-size: 1.05rem !important;
+    line-height: 1.75 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.5rem !important;
   }
   
   .service-card h3 {
-    font-size: clamp(1.25rem, 4vw, 1.4rem) !important;
+    font-size: clamp(1.375rem, 4vw, 1.5rem) !important;
     line-height: 1.3 !important;
     word-wrap: break-word !important;
+    margin-bottom: 1rem !important;
   }
   
   .service-card p {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 0 !important;
   }
   
   .contact-card h3 {
@@ -347,13 +380,14 @@
     box-sizing: border-box !important;
   }
   
-  /* Forms - mobile friendly */
+  /* Forms - mobile friendly with natural spacing */
   form {
-    width: calc(100% - 2rem) !important;
+    width: calc(100% - 2.5rem) !important;
     max-width: 100% !important;
-    margin: 0 1rem !important;
-    padding: 2rem 1.5rem !important;
+    margin: 2rem auto !important;
+    padding: 2.5rem 2rem !important;
     box-sizing: border-box !important;
+    border-radius: var(--radius-md) !important;
   }
   
   .form-grid {
@@ -390,16 +424,19 @@
     box-sizing: border-box !important;
   }
   
-  /* Footer */
+  /* Footer with natural spacing */
   footer {
-    padding: 2rem 1rem !important;
+    padding: 3rem 1.25rem 2rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    margin-top: 3rem !important;
   }
   
   .footer-top {
     width: 100% !important;
     box-sizing: border-box !important;
+    gap: 2.5rem !important;
+    margin-bottom: 2rem !important;
   }
   
   .footer-brand img {
@@ -415,25 +452,47 @@
     text-align: center !important;
   }
   
-  /* Emergency CTA */
+  /* Emergency CTA with better spacing */
   .emergency-cta {
-    width: calc(100% - 2rem) !important;
+    width: calc(100% - 2.5rem) !important;
     max-width: 100% !important;
-    margin: 1.5rem 1rem !important;
-    padding: 1.5rem 1.5rem !important;
+    margin: 2rem auto !important;
+    padding: 2rem 1.75rem !important;
     box-sizing: border-box !important;
-    font-size: 1rem !important;
+    font-size: 1.05rem !important;
+    border-radius: var(--radius-md) !important;
   }
   
-  /* Lists */
+  /* Badges - compliance, products, etc. */
+  .compliance-badges,
+  .products-badges {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    margin: 2rem 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .compliance-badge,
+  .products-badge {
+    width: 100% !important;
+    padding: 1.25rem 1.5rem !important;
+    box-sizing: border-box !important;
+    border-radius: var(--radius-md) !important;
+    text-align: center !important;
+  }
+  
+  /* Lists with better spacing */
   ul, ol {
-    padding-left: 1.5rem !important;
-    margin: 1rem 0 !important;
+    padding-left: 1.75rem !important;
+    margin: 1.5rem 0 !important;
   }
   
   li {
-    margin: 0.5rem 0 !important;
+    margin: 0.75rem 0 !important;
     word-wrap: break-word !important;
+    line-height: 1.7 !important;
   }
   
   /* Tables - make scrollable on mobile */
@@ -458,21 +517,21 @@
   }
 }
 
-/* Extra small devices */
+/* Extra small devices - still natural spacing */
 @media screen and (max-width: 480px) {
   .max-w {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
   
   .hero-card,
   .content-block,
   form,
   .emergency-cta {
-    margin-left: 0.5rem !important;
-    margin-right: 0.5rem !important;
-    width: calc(100% - 1rem) !important;
-    padding: 1.5rem 1rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: calc(100% - 2rem) !important;
+    padding: 2rem 1.5rem !important;
   }
   
   .nav {
@@ -491,24 +550,28 @@
   }
   
   .page-title {
-    font-size: clamp(1.5rem, 7vw, 2rem) !important;
+    font-size: clamp(1.625rem, 7vw, 2.25rem) !important;
+    margin-bottom: 1rem !important;
   }
   
   .page-subtitle {
-    font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
+    font-size: clamp(1rem, 4vw, 1.2rem) !important;
+    margin-bottom: 1.75rem !important;
   }
   
   .section-title {
-    font-size: clamp(1.3rem, 6vw, 1.75rem) !important;
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    margin-bottom: 1.25rem !important;
   }
   
   .content-block h2 {
-    font-size: clamp(1.3rem, 6vw, 1.6rem) !important;
+    font-size: clamp(1.5rem, 6vw, 1.875rem) !important;
+    margin-bottom: 1.25rem !important;
   }
   
   .service-card,
   .contact-card {
-    padding: 1.5rem 1rem !important;
+    padding: 2rem 1.5rem !important;
   }
   
   .footer-brand img {
@@ -516,6 +579,21 @@
   }
   
   .footer-bottom {
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
+    padding: 1.5rem 1rem !important;
+  }
+  
+  /* Ensure proper spacing between sections */
+  .hero {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .content-section {
+    padding: 2rem 0 !important;
+  }
+  
+  .services-grid,
+  .hero-meta {
+    gap: 1.75rem !important;
   }
 }
