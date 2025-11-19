@@ -2,7 +2,7 @@
 
 /* Force mobile menu button to show on all mobile devices */
 @media screen and (max-width: 968px) {
-  /* CRITICAL: Force button visibility */
+  /* CRITICAL: Force button visibility and clickability */
   button.mobile-menu-toggle,
   .mobile-menu-toggle {
     display: flex !important;
@@ -20,6 +20,33 @@
     margin-left: auto !important;
     order: 999 !important;
     cursor: pointer !important;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
+    touch-action: manipulation !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+  }
+  
+  /* Ensure button is never covered */
+  .mobile-menu-toggle * {
+    pointer-events: none !important;
+  }
+  
+  /* Make sure nothing covers the button */
+  header,
+  .nav,
+  .max-w {
+    position: relative !important;
+    z-index: auto !important;
+  }
+  
+  .mobile-menu-toggle:hover,
+  .mobile-menu-toggle:active,
+  .mobile-menu-toggle:focus {
+    background: linear-gradient(135deg, #004499, #0055aa) !important;
+    transform: scale(0.95) !important;
+    outline: 2px solid rgba(255, 255, 255, 0.5) !important;
+    outline-offset: 2px !important;
   }
   
   .mobile-menu-toggle span {
@@ -33,6 +60,30 @@
   /* Hide desktop navigation */
   .nav-links:not(.active) {
     display: none !important;
+  }
+  
+  /* CRITICAL: Ensure navigation links are clickable and above backdrop */
+  .nav-links.active {
+    z-index: 1001 !important;
+  }
+  
+  .nav-links.active a {
+    position: relative !important;
+    z-index: 1002 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(0, 102, 204, 0.2) !important;
+  }
+  
+  /* Ensure backdrop doesn't block links */
+  .nav-links.active::before {
+    z-index: 1000 !important;
+  }
+  
+  /* Make sure link content doesn't block clicks */
+  .nav-links.active a * {
+    pointer-events: none !important;
   }
   
   /* Hide emergency button on mobile */
