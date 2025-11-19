@@ -880,9 +880,9 @@ footer {
     pointer-events: auto;
   }
   
-  /* Ensure navigation links are above backdrop */
+  /* CRITICAL: Links must be above backdrop and clickable */
   .nav-links.active a {
-    position: relative;
+    position: relative !important;
     z-index: 1002 !important;
     pointer-events: auto !important;
   }

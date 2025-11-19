@@ -490,8 +490,11 @@
         toggle.style.cursor = 'pointer';
         toggle.style.zIndex = '9999';
         
-        toggle.addEventListener('click', toggleMenu, true);
-        toggle.addEventListener('touchstart', toggleMenu, true);
+        toggle.addEventListener('click', toggleMenu);
+        toggle.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          toggleMenu(e);
+        });
         
         // Ensure navigation links are clickable
         nav.querySelectorAll('a').forEach(link => {
