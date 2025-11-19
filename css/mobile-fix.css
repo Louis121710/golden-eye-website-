@@ -2,14 +2,14 @@
 
 /* Force mobile menu button to show on all mobile devices */
 @media screen and (max-width: 968px) {
-  /* CRITICAL: Force button visibility and clickability */
+  /* CRITICAL: Force button visibility and clickability - MUST BE ON TOP */
   button.mobile-menu-toggle,
   .mobile-menu-toggle {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     position: relative !important;
-    z-index: 9999 !important;
+    z-index: 99999 !important;
     background: linear-gradient(135deg, #003060, #004499) !important;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
     border-radius: 8px !important;
@@ -18,6 +18,7 @@
     min-height: 48px !important;
     flex-shrink: 0 !important;
     margin-left: auto !important;
+    margin-right: 0 !important;
     order: 999 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
@@ -25,6 +26,7 @@
     touch-action: manipulation !important;
     user-select: none !important;
     -webkit-user-select: none !important;
+    box-shadow: 0 4px 12px rgba(0, 48, 96, 0.3) !important;
   }
   
   /* Ensure button is never covered */
@@ -32,12 +34,29 @@
     pointer-events: none !important;
   }
   
-  /* Make sure nothing covers the button */
-  header,
-  .nav,
+  /* Make sure header and nav don't block the button */
+  header {
+    position: relative !important;
+    z-index: 1000 !important;
+    overflow: visible !important;
+  }
+  
+  .nav {
+    position: relative !important;
+    z-index: 1001 !important;
+    overflow: visible !important;
+  }
+  
   .max-w {
     position: relative !important;
     z-index: auto !important;
+    overflow: visible !important;
+  }
+  
+  /* Ensure button is above everything in nav */
+  .nav .mobile-menu-toggle {
+    position: relative !important;
+    z-index: 99999 !important;
   }
   
   .mobile-menu-toggle:hover,

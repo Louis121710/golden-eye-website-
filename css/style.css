@@ -82,6 +82,22 @@ header {
   overflow: visible;
 }
 
+/* Ensure mobile menu button is always visible and on top */
+@media (max-width: 968px) {
+  header {
+    overflow: visible !important;
+  }
+  
+  .nav {
+    overflow: visible !important;
+  }
+  
+  .mobile-menu-toggle {
+    position: relative !important;
+    z-index: 99999 !important;
+  }
+}
+
 header.scrolled {
   box-shadow: 0 4px 24px rgba(0, 48, 96, 0.1);
   border-bottom-color: rgba(0, 102, 204, 0.15);
