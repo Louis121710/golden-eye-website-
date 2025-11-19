@@ -923,7 +923,7 @@ footer {
     font-weight: 600;
     color: var(--blue-900);
     background: #ffffff;
-    border-bottom: 1px solid rgba(0, 48, 96, 0.06);
+    border-bottom: none;
     text-decoration: none;
     transition: all 0.2s ease;
     position: relative;
