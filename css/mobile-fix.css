@@ -1,8 +1,30 @@
-/* COMPREHENSIVE MOBILE FIXES - Makes all pages mobile-friendly */
+/* ============================================
+   COMPLETE MOBILE RESTYLE - AGGRESSIVE FIXES
+   This file completely restyles the site for mobile
+   ============================================ */
 
-/* Force mobile menu button to show on all mobile devices */
+/* GLOBAL MOBILE RESET - Prevent ALL overflow */
 @media screen and (max-width: 968px) {
-  /* CRITICAL: Force button visibility and clickability - MUST BE ON TOP */
+  /* Force viewport constraints on root elements */
+  html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+  }
+  
+  * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Exception for full-width elements */
+  html, body, header, footer, .nav-links.active {
+    max-width: 100vw !important;
+  }
+  
+  /* MOBILE MENU BUTTON - Must be visible */
   button.mobile-menu-toggle,
   .mobile-menu-toggle {
     display: flex !important;
@@ -22,47 +44,7 @@
     order: 999 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
-    touch-action: manipulation !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
     box-shadow: 0 4px 12px rgba(0, 48, 96, 0.3) !important;
-  }
-  
-  .mobile-menu-toggle * {
-    pointer-events: none !important;
-  }
-  
-  header {
-    position: relative !important;
-    z-index: 1000 !important;
-    overflow: visible !important;
-  }
-  
-  .nav {
-    position: relative !important;
-    z-index: 1001 !important;
-    overflow: visible !important;
-  }
-  
-  .max-w {
-    position: relative !important;
-    z-index: auto !important;
-    overflow: visible !important;
-  }
-  
-  .nav .mobile-menu-toggle {
-    position: relative !important;
-    z-index: 99999 !important;
-  }
-  
-  .mobile-menu-toggle:hover,
-  .mobile-menu-toggle:active,
-  .mobile-menu-toggle:focus {
-    background: linear-gradient(135deg, #004499, #0055aa) !important;
-    transform: scale(0.95) !important;
-    outline: 2px solid rgba(255, 255, 255, 0.5) !important;
-    outline-offset: 2px !important;
   }
   
   .mobile-menu-toggle span {
@@ -73,38 +55,26 @@
     margin: 3px 0 !important;
   }
   
-  .nav-links:not(.active) {
-    display: none !important;
-  }
-  
-  .nav-links.active {
-    z-index: 1001 !important;
-  }
-  
-  .nav-links.active a {
+  /* HEADER AND NAV */
+  header {
     position: relative !important;
-    z-index: 1002 !important;
-    pointer-events: auto !important;
-    cursor: pointer !important;
-    touch-action: manipulation !important;
-    -webkit-tap-highlight-color: rgba(0, 102, 204, 0.2) !important;
-  }
-  
-  .nav-links.active::before {
     z-index: 1000 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100vw !important;
   }
   
-  .nav-links.active a * {
-    pointer-events: none !important;
+  .nav {
+    position: relative !important;
+    z-index: 1001 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    flex-wrap: nowrap !important;
   }
   
   .nav-cta {
     display: none !important;
-  }
-  
-  .nav {
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
   }
   
   .brand {
@@ -114,56 +84,40 @@
     overflow: hidden !important;
   }
   
-  /* Prevent horizontal scroll */
-  html, body {
-    overflow-x: hidden !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: relative !important;
-  }
-  
-  /* Force all images and media to be responsive */
-  img, video, iframe, embed, object {
-    max-width: 100% !important;
-    height: auto !important;
-    display: block !important;
-  }
-  
-  /* All containers should respect viewport with natural spacing - AGGRESSIVE FIX */
+  /* CONTAINER - Force viewport width */
   .max-w {
     width: 100% !important;
     max-width: 100vw !important;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
-    box-sizing: border-box !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    box-sizing: border-box !important;
     overflow-x: hidden !important;
   }
   
-  /* Ensure hero section max-w doesn't overflow */
-  .hero .max-w {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-  
-  /* Hero sections - mobile friendly with natural spacing - AGGRESSIVE FIX */
+  /* HERO SECTION - Complete restyle */
   .hero {
     padding: 1.5rem 0 !important;
     width: 100% !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
-    margin-bottom: 1rem !important;
     overflow-x: hidden !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .hero .max-w {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
   
   .hero-card {
-    width: calc(100% - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
     max-width: calc(100vw - 2rem) !important;
     margin: 0 auto !important;
     padding: 2rem 1.5rem !important;
     box-sizing: border-box !important;
-    border-radius: var(--radius-md) !important;
+    border-radius: 12px !important;
     overflow-x: hidden !important;
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
@@ -179,146 +133,196 @@
     padding: 0 !important;
   }
   
-  /* Content blocks - proper mobile sizing with breathing room */
-  .content-block {
-    width: calc(100% - 2.5rem) !important;
-    max-width: 100% !important;
-    margin: 2rem auto !important;
-    padding: 2.5rem 2rem !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    border-radius: var(--radius-md) !important;
-  }
-  
-  .content-section {
-    padding: 2.5rem 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  
-  /* All grids to single column with natural spacing */
-  .services-grid,
-  .hero-meta,
-  .contact-wrapper,
-  .quick-actions,
-  .stats-grid,
-  .form-grid,
-  .footer-top {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-    padding: 0 1.25rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: 2rem !important;
-  }
-  
-  /* Service cards with better spacing */
-  .service-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 2.5rem 2rem !important;
-    box-sizing: border-box !important;
-    border-radius: var(--radius-md) !important;
-    margin-bottom: 0 !important;
-  }
-  
-  /* Infrastructure badges with better spacing */
-  .infrastructure-badges {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 1.25rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin: 2rem 0 !important;
-  }
-  
-  .infrastructure-badge {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 1.5rem !important;
-    border-radius: var(--radius-md) !important;
-  }
-  
-  /* Hero meta items with natural spacing */
-  .hero-meta {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: 2rem !important;
-    gap: 1.5rem !important;
-  }
-  
-  .meta-item {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 1.5rem !important;
-    border-radius: var(--radius-md) !important;
-  }
-  
-  /* Stats grid with natural spacing */
-  .stats-grid {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    gap: 2rem !important;
-    margin: 2rem 0 !important;
-  }
-  
-  .stat-item {
-    padding: 2rem 1.5rem !important;
-    border-radius: var(--radius-md) !important;
-  }
-  
-  /* Quick actions with better spacing */
-  .quick-actions {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    gap: 1.75rem !important;
-    margin: 2rem 0 !important;
-  }
-  
-  .action-card {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 2rem 1.75rem !important;
-    border-radius: var(--radius-md) !important;
-  }
-  
-  /* Text sizing - responsive and readable with natural spacing */
+  /* PAGE TITLES AND TEXT */
   .page-title {
-    font-size: clamp(1.875rem, 6vw, 2.5rem) !important;
+    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
     line-height: 1.3 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     padding: 0 !important;
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .page-subtitle {
-    font-size: clamp(1.1rem, 4vw, 1.3rem) !important;
-    line-height: 1.7 !important;
+    font-size: clamp(1rem, 4vw, 1.2rem) !important;
+    line-height: 1.6 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     padding: 0 !important;
-    margin-bottom: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* EMERGENCY CTA - Force text wrapping */
+  .emergency-cta {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin: 1.5rem auto !important;
+    padding: 1.25rem 1rem !important;
+    box-sizing: border-box !important;
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
+    border-radius: 12px !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    overflow-x: hidden !important;
+    text-align: center !important;
+    display: block !important;
+  }
+  
+  .emergency-cta a {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .emergency-label,
+  .emergency-number {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+  }
+  
+  .emergency-label {
+    margin-bottom: 0.5rem !important;
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem) !important;
+  }
+  
+  .emergency-number {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+    font-weight: 700 !important;
+  }
+  
+  /* CONTACT METHODS - Complete restyle */
+  .contact-methods {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .contact-method {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    padding: 1rem 0.75rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    display: flex !important;
+    align-items: flex-start !important;
+  }
+  
+  .contact-method .icon {
+    flex-shrink: 0 !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+  }
+  
+  .contact-method .info {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 50px) !important;
+    width: calc(100% - 50px) !important;
+    overflow-x: hidden !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+  }
+  
+  .contact-method .label {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.7rem !important;
+    margin-bottom: 0.4rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
+  .contact-method .value {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    white-space: normal !important;
+    hyphens: auto !important;
+  }
+  
+  /* CONTENT SECTIONS */
+  .content-section {
+    padding: 2rem 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
+  .content-block {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin: 2rem auto !important;
+    padding: 2rem 1.5rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    border-radius: 12px !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
   }
   
   .section-title {
     font-size: clamp(1.75rem, 5vw, 2.25rem) !important;
     line-height: 1.3 !important;
-    padding: 0 1.25rem !important;
+    padding: 0 1rem !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     margin-bottom: 1.5rem !important;
     margin-top: 2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .section-subtitle {
     font-size: clamp(1.05rem, 3.5vw, 1.2rem) !important;
     line-height: 1.7 !important;
-    padding: 0 1.25rem !important;
+    padding: 0 1rem !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     margin-bottom: 2.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .content-block h2 {
@@ -327,6 +331,9 @@
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .content-block h3 {
@@ -334,6 +341,9 @@
     line-height: 1.4 !important;
     word-wrap: break-word !important;
     margin-bottom: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .content-block p {
@@ -342,6 +352,37 @@
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* GRIDS - Force single column */
+  .services-grid,
+  .hero-meta,
+  .contact-wrapper,
+  .quick-actions,
+  .stats-grid,
+  .form-grid,
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 0 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 2rem !important;
+  }
+  
+  .service-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 2rem 1.5rem !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
   }
   
   .service-card h3 {
@@ -349,67 +390,30 @@
     line-height: 1.3 !important;
     word-wrap: break-word !important;
     margin-bottom: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .service-card p {
     font-size: 1.05rem !important;
     line-height: 1.7 !important;
     margin-bottom: 0 !important;
-  }
-  
-  .contact-card h3 {
-    font-size: clamp(1.25rem, 4vw, 1.4rem) !important;
-    line-height: 1.3 !important;
-  }
-  
-  .contact-list span {
-    font-size: 0.95rem !important;
-    word-wrap: break-word !important;
-  }
-  
-  .meta-text strong {
-    font-size: clamp(1rem, 3vw, 1.1rem) !important;
-  }
-  
-  .meta-text span {
-    font-size: 0.85rem !important;
-  }
-  
-  .stat-number {
-    font-size: clamp(2rem, 8vw, 2.8rem) !important;
-    line-height: 1.2 !important;
-  }
-  
-  .stat-label {
-    font-size: 0.95rem !important;
-    line-height: 1.4 !important;
-  }
-  
-  .action-card h4 {
-    font-size: clamp(1.1rem, 3.5vw, 1.2rem) !important;
-    line-height: 1.3 !important;
-  }
-  
-  .action-card p {
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-  }
-  
-  .action-btn {
-    font-size: 0.9rem !important;
-    padding: 0.9rem 1.5rem !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
   
-  /* Forms - mobile friendly with natural spacing - FIXED OVERFLOW */
+  /* FORMS - Complete restyle */
   form {
-    width: calc(100% - 2.5rem) !important;
-    max-width: calc(100% - 2.5rem) !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
     margin: 2rem auto !important;
     padding: 2rem 1.5rem !important;
     box-sizing: border-box !important;
-    border-radius: var(--radius-md) !important;
+    border-radius: 12px !important;
     overflow-x: hidden !important;
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
@@ -440,8 +444,8 @@
   }
   
   input, select, textarea {
-    font-size: 16px !important; /* Prevents iOS zoom */
-    min-height: 48px !important; /* Touch target size */
+    font-size: 16px !important;
+    min-height: 48px !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -526,7 +530,7 @@
     overflow-x: hidden !important;
   }
   
-  /* Contact wrapper - ensure single column on mobile */
+  /* CONTACT WRAPPER */
   .contact-wrapper {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
@@ -545,177 +549,70 @@
     gap: 2rem !important;
   }
   
-  /* Override inline styles from contact.html */
-  .contact-wrapper form {
-    width: calc(100% - 2.5rem) !important;
-    max-width: calc(100% - 2.5rem) !important;
-    padding: 2rem 1.5rem !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-  }
-  
-  /* Ensure contact cards don't overflow */
   .contact-card {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
     overflow-x: hidden !important;
     padding: 2rem 1.5rem !important;
-  }
-  
-  /* Contact methods - AGGRESSIVE FIX TEXT OVERFLOW */
-  .contact-methods {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    gap: 1rem !important;
-    margin-top: 1.5rem !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  
-  .contact-method {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    padding: 1rem 0.75rem !important;
-    flex-wrap: wrap !important;
-    gap: 0.75rem !important;
-    display: flex !important;
-    align-items: flex-start !important;
-  }
-  
-  .contact-method .icon {
-    flex-shrink: 0 !important;
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    max-width: 40px !important;
-  }
-  
-  .contact-method .info {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    max-width: calc(100% - 50px) !important;
-    width: calc(100% - 50px) !important;
-    overflow-x: hidden !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    box-sizing: border-box !important;
-  }
-  
-  .contact-method .label {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    font-size: 0.7rem !important;
-    margin-bottom: 0.4rem !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-  }
-  
-  .contact-method .value {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    font-size: clamp(0.9rem, 3vw, 1rem) !important;
-    line-height: 1.4 !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    hyphens: auto !important;
-    -webkit-hyphens: auto !important;
-  }
-  
-  /* Footer with natural spacing */
-  footer {
-    padding: 3rem 1.25rem 2rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: 3rem !important;
-  }
-  
-  .footer-top {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    gap: 2.5rem !important;
-    margin-bottom: 2rem !important;
-  }
-  
-  .footer-brand img {
-    width: 120px !important;
-    max-width: 100% !important;
-    height: auto !important;
-  }
-  
-  .footer-bottom {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    font-size: 0.85rem !important;
-    text-align: center !important;
-  }
-  
-  /* Emergency CTA with better spacing - AGGRESSIVE FIX TEXT OVERFLOW */
-  .emergency-cta {
-    width: calc(100% - 1rem) !important;
-    max-width: calc(100vw - 2rem) !important;
-    margin: 1.5rem auto !important;
-    padding: 1.25rem 1rem !important;
-    box-sizing: border-box !important;
-    font-size: clamp(0.9rem, 3vw, 1rem) !important;
-    border-radius: var(--radius-md) !important;
-    white-space: normal !important;
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
-    overflow-x: hidden !important;
-    text-align: center !important;
-    display: block !important;
   }
   
-  .emergency-cta a {
-    white-space: normal !important;
-    word-wrap: break-word !important;
+  /* HERO META */
+  .hero-meta {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 2rem !important;
+    gap: 1.5rem !important;
+  }
+  
+  .meta-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
     overflow-wrap: break-word !important;
-    display: block !important;
+    word-wrap: break-word !important;
+  }
+  
+  /* STATS */
+  .stats-grid {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    gap: 2rem !important;
+    margin: 2rem 0 !important;
+  }
+  
+  .stat-item {
+    padding: 2rem 1.5rem !important;
+    border-radius: 12px !important;
     width: 100% !important;
     max-width: 100% !important;
-    text-align: center !important;
     box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
   
-  .emergency-label,
-  .emergency-number {
-    display: block !important;
+  /* QUICK ACTIONS */
+  .quick-actions {
     width: 100% !important;
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
     box-sizing: border-box !important;
+    gap: 1.75rem !important;
+    margin: 2rem 0 !important;
   }
   
-  .emergency-label {
-    margin-bottom: 0.5rem !important;
-    font-size: clamp(0.8rem, 2.5vw, 0.95rem) !important;
+  .action-card {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 2rem 1.75rem !important;
+    border-radius: 12px !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
   }
   
-  .emergency-number {
-    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
-    font-weight: 700 !important;
-  }
-  
-  /* Badges - compliance, products, etc. */
+  /* BADGES */
   .compliance-badges,
-  .products-badges {
+  .products-badges,
+  .infrastructure-badges {
     display: flex !important;
     flex-direction: column !important;
     gap: 1rem !important;
@@ -725,125 +622,85 @@
   }
   
   .compliance-badge,
-  .products-badge {
+  .products-badge,
+  .infrastructure-badge {
     width: 100% !important;
     padding: 1.25rem 1.5rem !important;
     box-sizing: border-box !important;
-    border-radius: var(--radius-md) !important;
+    border-radius: 12px !important;
     text-align: center !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
   
-  /* Lists with better spacing */
+  /* FOOTER */
+  footer {
+    padding: 3rem 1rem 2rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 3rem !important;
+    overflow-x: hidden !important;
+  }
+  
+  .footer-top {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    gap: 2.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  /* IMAGES */
+  img, video, iframe, embed, object {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+  
+  /* LISTS */
   ul, ol {
     padding-left: 1.75rem !important;
     margin: 1.5rem 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   li {
     margin: 0.75rem 0 !important;
     word-wrap: break-word !important;
     line-height: 1.7 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
-  /* Tables - make scrollable on mobile */
+  /* TABLES */
   table {
     width: 100% !important;
     display: block !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
   }
-  
-  /* Ensure no element overflows */
-  * {
-    max-width: 100% !important;
-  }
-  
-  /* Exception for specific elements that need to be full width */
-  .nav-links,
-  .nav-links.active,
-  header,
-  footer {
-    max-width: 100vw !important;
-  }
 }
 
-/* Extra small devices - still natural spacing */
+/* EXTRA SMALL DEVICES - 480px and below */
 @media screen and (max-width: 480px) {
   .max-w {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
   }
   
-  .hero-card,
-  .content-block,
-  form,
-  .emergency-cta {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: calc(100% - 2rem) !important;
-    max-width: calc(100% - 2rem) !important;
-    padding: 1.75rem 1.25rem !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-  }
-  
-  /* Extra small form fixes */
-  form {
-    padding: 1.75rem 1.25rem !important;
-  }
-  
-  .form-grid {
-    gap: 1.25rem !important;
-  }
-  
-  input, select, textarea {
-    padding: 0.9rem 1rem !important;
-  }
-  
-  .captcha-container {
-    flex-direction: column !important;
-    gap: 0.75rem !important;
-  }
-  
-  .captcha-box {
-    padding: 0.75rem !important;
-    font-size: 0.9rem !important;
-  }
-  
-  .captcha-input {
-    width: 100% !important;
-    padding: 0.9rem !important;
-  }
-  
-  .submit-btn {
-    padding: 1rem 1.5rem !important;
-  }
-  
-  .contact-wrapper {
-    gap: 2rem !important;
-  }
-  
-  /* Extra small - Emergency CTA and Contact Methods - AGGRESSIVE FIX */
   .hero-card {
-    width: calc(100% - 1rem) !important;
-    max-width: calc(100vw - 1rem) !important;
+    width: calc(100vw - 1.5rem) !important;
+    max-width: calc(100vw - 1.5rem) !important;
     padding: 1.5rem 1rem !important;
   }
   
   .emergency-cta {
-    width: calc(100% - 0.5rem) !important;
-    max-width: calc(100vw - 1rem) !important;
+    width: calc(100vw - 1.5rem) !important;
+    max-width: calc(100vw - 1.5rem) !important;
     padding: 1rem 0.75rem !important;
     font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
-    margin: 1rem auto !important;
-  }
-  
-  .emergency-label {
-    font-size: clamp(0.75rem, 2vw, 0.9rem) !important;
-  }
-  
-  .emergency-number {
-    font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
   }
   
   .contact-method {
@@ -856,7 +713,6 @@
     height: 35px !important;
     min-width: 35px !important;
     max-width: 35px !important;
-    font-size: 1.1rem !important;
   }
   
   .contact-method .info {
@@ -864,75 +720,27 @@
     width: calc(100% - 45px) !important;
   }
   
-  .contact-method .label {
-    font-size: 0.65rem !important;
-  }
-  
   .contact-method .value {
     font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
     line-height: 1.3 !important;
   }
   
-  .nav {
-    padding: 0.75rem 0 !important;
-    min-height: 60px !important;
-  }
-  
-  .brand img {
-    height: 35px !important;
-  }
-  
-  .mobile-menu-toggle {
-    min-width: 44px !important;
-    min-height: 44px !important;
-    padding: 8px !important;
+  .content-block,
+  form {
+    width: calc(100vw - 1.5rem) !important;
+    max-width: calc(100vw - 1.5rem) !important;
+    padding: 1.5rem 1rem !important;
   }
   
   .page-title {
     font-size: clamp(1.625rem, 7vw, 2.25rem) !important;
-    margin-bottom: 1rem !important;
   }
   
   .page-subtitle {
     font-size: clamp(1rem, 4vw, 1.2rem) !important;
-    margin-bottom: 1.75rem !important;
   }
   
   .section-title {
     font-size: clamp(1.5rem, 6vw, 2rem) !important;
-    margin-bottom: 1.25rem !important;
-  }
-  
-  .content-block h2 {
-    font-size: clamp(1.5rem, 6vw, 1.875rem) !important;
-    margin-bottom: 1.25rem !important;
-  }
-  
-  .service-card,
-  .contact-card {
-    padding: 2rem 1.5rem !important;
-  }
-  
-  .footer-brand img {
-    width: 100px !important;
-  }
-  
-  .footer-bottom {
-    font-size: 0.85rem !important;
-    padding: 1.5rem 1rem !important;
-  }
-  
-  /* Ensure proper spacing between sections */
-  .hero {
-    padding: 1.5rem 0 !important;
-  }
-  
-  .content-section {
-    padding: 2rem 0 !important;
-  }
-  
-  .services-grid,
-  .hero-meta {
-    gap: 1.75rem !important;
   }
 }
