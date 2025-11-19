@@ -6,6 +6,36 @@
   <title>Golden Eye Security | Infrastructure</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/mobile-fix.css">
+  <!-- Define mobile menu functions IMMEDIATELY - before DOM loads -->
+  <script>
+    window.toggleMobileMenu = function(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      var nav = document.querySelector('.nav-links');
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var body = document.body;
+      if (!nav || !toggle) return;
+      var isActive = nav.classList.contains('active');
+      if (isActive) {
+        toggle.classList.remove('active');
+        nav.classList.remove('active');
+        body.classList.remove('menu-open');
+        body.style.overflow = '';
+      } else {
+        toggle.classList.add('active');
+        nav.classList.add('active');
+        body.classList.add('menu-open');
+        body.style.overflow = 'hidden';
+      }
+    };
+    window.closeMobileMenu = function() {
+      var nav = document.querySelector('.nav-links');
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var body = document.body;
+      if (nav) nav.classList.remove('active');
+      if (toggle) toggle.classList.remove('active');
+      if (body) { body.classList.remove('menu-open'); body.style.overflow = ''; }
+    };
+  </script>
   <style>
     /* Enhanced Hero Section */
     .hero-content {
@@ -248,19 +278,19 @@
           <img src="./assets/saidsa-logo.png" alt="SAIDSA Accredited">
         </div>
       </div>
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="if(window.toggleMobileMenu){window.toggleMobileMenu(event);} return false;">
         <span></span>
         <span></span>
         <span></span>
       </button>
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="compliance.html">Compliance &amp; QC</a>
-        <a href="training.html">Training</a>
-        <a href="equity.html">Equity</a>
-        <a href="infrastructure.html" class="active">Infrastructure</a>
-        <a href="products.html">Products &amp; Services</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="index.html" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Home</a>
+        <a href="compliance.html" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Compliance &amp; QC</a>
+        <a href="training.html" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Training</a>
+        <a href="equity.html" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Equity</a>
+        <a href="infrastructure.html" class="active" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Infrastructure</a>
+        <a href="products.html" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Products &amp; Services</a>
+        <a href="contact.html" onclick="if(window.closeMobileMenu){setTimeout(window.closeMobileMenu, 50);}">Contact Us</a>
       </nav>
       <a class="nav-cta" href="tel:+27186326532">Emergency Hotline</a>
     </div>

@@ -17,97 +17,125 @@ class GoldenEyeApp {
     }
 
     setupMobileMenu() {
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const body = document.body;
-        
-        if (!menuToggle || !navLinks) {
-            console.warn('Mobile menu elements not found');
-            return;
-        }
-        
-        // Ensure button is clickable
-        menuToggle.style.pointerEvents = 'auto';
-        menuToggle.style.cursor = 'pointer';
-        menuToggle.style.zIndex = '9999';
-        menuToggle.setAttribute('tabindex', '0');
-        menuToggle.setAttribute('role', 'button');
-        menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
-        
-        // Toggle menu function
-        const toggleMenu = (e) => {
+        // Define global functions FIRST - before DOM is ready
+        window.toggleMobileMenu = function(e) {
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
             
-            const isActive = navLinks.classList.contains('active');
+            const nav = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const body = document.body;
+            
+            if (!nav || !toggle) {
+                console.warn('Menu elements not found');
+                return;
+            }
+            
+            const isActive = nav.classList.contains('active');
             
             if (isActive) {
-                // Close menu
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
+                toggle.classList.remove('active');
+                nav.classList.remove('active');
                 body.classList.remove('menu-open');
                 body.style.overflow = '';
             } else {
-                // Open menu
-                menuToggle.classList.add('active');
-                navLinks.classList.add('active');
+                toggle.classList.add('active');
+                nav.classList.add('active');
                 body.classList.add('menu-open');
                 body.style.overflow = 'hidden';
             }
         };
-
-        // Button click handler - simple and direct
-        menuToggle.addEventListener('click', toggleMenu);
-        menuToggle.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            toggleMenu(e);
-        });
-
-        // Close menu function
-        const closeMenu = () => {
-            menuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            body.classList.remove('menu-open');
-            body.style.overflow = '';
+        
+        window.closeMobileMenu = function() {
+            const nav = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const body = document.body;
+            
+            if (nav) nav.classList.remove('active');
+            if (toggle) toggle.classList.remove('active');
+            if (body) {
+                body.classList.remove('menu-open');
+                body.style.overflow = '';
+            }
         };
         
-        // Make all links clickable and close menu on click
-        navLinks.querySelectorAll('a').forEach(link => {
-            // Ensure link is clickable
-            link.style.pointerEvents = 'auto';
-            link.style.cursor = 'pointer';
-            link.style.zIndex = '1002';
-            link.style.position = 'relative';
+        // Wait for DOM
+        const initMenu = () => {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
             
-            // Close menu when link is clicked (don't prevent navigation)
-            link.addEventListener('click', () => {
-                setTimeout(closeMenu, 100);
-            }, { passive: true });
-        });
+            if (!menuToggle || !navLinks) {
+                setTimeout(initMenu, 100);
+                return;
+            }
+            
+            // Force button to be clickable
+            menuToggle.style.cssText = 'pointer-events: auto !important; cursor: pointer !important; z-index: 9999 !important; position: relative !important;';
+            menuToggle.setAttribute('tabindex', '0');
+            menuToggle.setAttribute('role', 'button');
+            
+            // Add onclick if not already there
+            if (!menuToggle.getAttribute('onclick')) {
+                menuToggle.setAttribute('onclick', 'window.toggleMobileMenu(event); return false;');
+            }
+            
+            // Also add event listeners as backup
+            menuToggle.addEventListener('click', window.toggleMobileMenu);
+            menuToggle.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                window.toggleMobileMenu(e);
+            });
+            
+            // Make all links clickable and add close handlers
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.style.cssText = 'pointer-events: auto !important; cursor: pointer !important; z-index: 1002 !important; position: relative !important;';
+                
+                // Add onclick to close menu
+                const originalOnclick = link.getAttribute('onclick') || '';
+                link.setAttribute('onclick', originalOnclick + 'window.closeMobileMenu();');
+                
+                // Also add event listener
+                link.addEventListener('click', function() {
+                    setTimeout(window.closeMobileMenu, 100);
+                });
+            });
 
-        // Close menu when clicking on backdrop (outside menu)
-        document.addEventListener('click', (e) => {
-            if (navLinks.classList.contains('active')) {
-                // Check if click is on a link - if so, let it navigate
-                if (e.target.closest('a') && navLinks.contains(e.target.closest('a'))) {
-                    return; // Let the link handle navigation
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const nav = document.querySelector('.nav-links');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                
+                if (!nav || !nav.classList.contains('active')) return;
+                
+                // Don't close if clicking on a link
+                if (e.target.closest('a') && nav.contains(e.target.closest('a'))) {
+                    return;
                 }
                 
-                // Check if click is outside menu and not on toggle button
-                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                    closeMenu();
+                // Close if clicking outside menu
+                if (!nav.contains(e.target) && (!toggle || !toggle.contains(e.target))) {
+                    window.closeMobileMenu();
                 }
-            }
-        });
+            });
 
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                closeMenu();
-            }
-        });
+            // Close on escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const nav = document.querySelector('.nav-links');
+                    if (nav && nav.classList.contains('active')) {
+                        window.closeMobileMenu();
+                    }
+                }
+            });
+        };
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMenu);
+        } else {
+            initMenu();
+        }
     }
 
     handleScroll() {
