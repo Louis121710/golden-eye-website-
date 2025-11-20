@@ -541,14 +541,6 @@
     margin-top: 2rem !important;
   }
   
-  .contact-grid {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-    gap: 2rem !important;
-  }
-  
   .contact-card {
     width: 100% !important;
     max-width: 100% !important;
@@ -810,6 +802,44 @@
   .contact-method .value {
     font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
     line-height: 1.3 !important;
+  }
+  
+  /* Extra small - Contact cards */
+  .contact-card {
+    padding: 2.5rem 1rem 1.5rem 1rem !important;
+  }
+  
+  .contact-card::before {
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+    font-size: 0.6rem !important;
+    padding: 0.35rem 0.6rem !important;
+    max-width: calc(100% - 1.5rem) !important;
+  }
+  
+  .contact-card h3 {
+    width: calc(100% - 90px) !important;
+    max-width: calc(100% - 90px) !important;
+    font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .two-line-heading {
+    width: calc(100% - 90px) !important;
+    max-width: calc(100% - 90px) !important;
+  }
+  
+  .contact-list {
+    gap: 0.875rem !important;
+  }
+  
+  .contact-list span {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .contact-grid {
+    gap: 1.5rem !important;
   }
   
   .content-block,
